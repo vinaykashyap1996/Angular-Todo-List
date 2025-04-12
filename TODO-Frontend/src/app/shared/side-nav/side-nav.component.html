@@ -1,0 +1,41 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav [mode]="isSmallScreen ? 'over' : 'side'" [opened]="!isSmallScreen" class="sidenav">
+    <div class="list-title">
+      My Lists
+      <button mat-icon-button class="add-button" (click)="onAddList()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let list of lists" (click)="onSelectList(list)">
+        <div class="display-item">
+          <span>{{ list.list.title }}</span>
+          <span>{{ list?.taskCount || 0 }}</span>
+        </div>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button *ngIf="isSmallScreen" mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <!-- <span>Responsive Reminders</span> -->
+      <div class="view-toggle">
+        <button mat-icon-button (click)="toggleView('list')">
+          <mat-icon>view_list</mat-icon>
+        </button>
+        <button mat-icon-button (click)="toggleView('grid')">
+          <mat-icon>grid_view</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
+    <div class="task-container" [ngClass]="viewMode">
+      <div *ngFor="let task of selectedTasks" class="task-item">
+        <h3>{{ task.title }}</h3>
+        <p>{{ task.description }}</p>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

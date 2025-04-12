@@ -1,0 +1,78 @@
+.sidenav-container {
+    height: 100vh;
+  }
+  
+  .sidenav {
+    width: 260px;
+    background: #1c1c1e;
+    color: white;
+  }
+  
+  .list-title {
+    padding: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #a0a0a0;
+  }
+  
+  .custom-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 10px;
+    margin: 4px 8px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .custom-list-item:hover {
+    background-color: #2c2c2e;
+  }
+  
+  .selected {
+    background-color: #3a3a3c;
+  }
+  
+  .icon-wrapper {
+    min-width: 32px;
+    min-height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    color: white;
+  }
+  
+  .orange {
+    background-color: #f39c12;
+  }
+  
+  .blue {
+    background-color: #3498db;
+  }
+  
+  .red {
+    background-color: #e74c3c;
+  }
+  
+  .label {
+    flex-grow: 1;
+    font-weight: 500;
+  }
+  
+  .count {
+    opacity: 0.6;
+  }
+  
+
+.display-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-icon {
+  font-size: 24px;
+  color: white;
+}
