@@ -7,11 +7,12 @@
       </button>
     </div>
     <mat-nav-list>
-      <a mat-list-item *ngFor="let list of lists" (click)="onSelectList(list)">
+      <a mat-list-item *ngFor="let list of (lists$ | async)" (click)="onSelectList(list)">
+         <!-- [ngClass]="{ 'selected': selectedList?.list?._id === list.list?._id }">
         <div class="display-item">
-          <span>{{ list.list.title }}</span>
+          <span>{{ list.list?.title }}</span>
           <span>{{ list?.taskCount || 0 }}</span>
-        </div>
+        </div> -->
       </a>
     </mat-nav-list>
   </mat-sidenav>
@@ -21,7 +22,8 @@
       <button *ngIf="isSmallScreen" mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <!-- <span>Responsive Reminders</span> -->
+      <span class="todo-header">Todo List</span>
+      <span class="spacer"></span>
       <div class="view-toggle">
         <button mat-icon-button (click)="toggleView('list')">
           <mat-icon>view_list</mat-icon>
@@ -31,10 +33,31 @@
         </button>
       </div>
     </mat-toolbar>
+
+    <div *ngIf="selectedList" class="create-task-form">
+      <h3>Create New Task</h3>
+      <form (ngSubmit)="onCreateTask()" #taskForm="ngForm">
+        <mat-form-field appearance="fill" class="task-input">
+          <mat-label>Title</mat-label>
+          <input matInput name="title" [(ngModel)]="newTaskTitle" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="task-input">
+          <mat-label>Description</mat-label>
+          <textarea matInput name="description" [(ngModel)]="newTaskDescription"></textarea>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="!taskForm.form.valid">
+          Add Task
+        </button>
+      </form>
+    </div>
+
+
     <div class="task-container" [ngClass]="viewMode">
-      <div *ngFor="let task of selectedTasks" class="task-item">
-        <h3>{{ task.title }}</h3>
-        <p>{{ task.description }}</p>
+      <div *ngFor="let tasks of selectedTasks" class="task-item">
+        <h3>{{ tasks?.title }}</h3>
+        <p>{{ tasks?.description }}</p>
       </div>
     </div>
   </mat-sidenav-content>

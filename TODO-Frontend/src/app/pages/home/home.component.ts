@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
         // Assuming the API returns an array of lists
         // You can modify this part based on the actual structure of your API response
         // For example, if the API returns an object with a 'lists' property:
-        this.lists = data;
+        this.lists = data.data.lists;
         this.apiService.list.set(data);
       },
       error: (error) => {

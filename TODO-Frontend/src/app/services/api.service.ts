@@ -1,26 +1,35 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IGetListsResponse, List, Task } from '../model/list-task.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:4000'; // Replace with your actual API URL
+  private baseUrl = 'http://localhost:4000';
   constructor() {}
 
   list = signal<any>(null);
 
-  getLists(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/api/`);
+  getLists(): Observable<IGetListsResponse> {
+    return this.http.get<IGetListsResponse>(`${this.baseUrl}/api/`);
   }
 
-  createList(list: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/api/`, list);
+  createList(list: List): Observable<List> {
+    return this.http.post<List>(`${this.baseUrl}/api/`, list);
   }
 
-  getTasksByListId(listId: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/api/${listId}`);
+  createTask(listId: string, { title, description }: { title: string; description: string }): Observable<Task> {
+    return this.http.post<Task>(`${this.baseUrl}/api/${listId}/tasks`, {
+      title: title,
+      description: description
+    });
+  }
+
+
+  getTasksByListId(listId: string): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.baseUrl}/api/${listId}`);
   }
 }

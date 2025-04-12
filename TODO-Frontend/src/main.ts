@@ -4,13 +4,17 @@ import { AppComponent } from './app/app.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
+import { provideStore } from '@ngrx/store';
+import { listReducer } from './app/store/list-task.reducer';
 
 bootstrapApplication(AppComponent, {
   ...appConfig,
   providers: [
     provideHttpClient(),
-    provideRouter(routes) // 👈 must provide router
-
+    provideRouter(routes),
+    provideStore({
+      listState: listReducer
+    })
   ]
 })
   .catch((err) => console.error(err));
