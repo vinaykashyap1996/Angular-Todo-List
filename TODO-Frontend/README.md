@@ -32,8 +32,8 @@ The application integrates with a REST API and persists data in the browser's lo
 
 2.  **Clone the repository:**
     ```bash
-    git clone <your-repository-url>
-    cd your-project-name
+    git clone https://github.com/vinaykashyap1996/Angular-Todo-List
+    cd Angular-Todo-list
     ```
 
 3.  **Install dependencies:**
