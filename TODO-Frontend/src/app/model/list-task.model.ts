@@ -1,13 +1,15 @@
 export interface Task {
-  id: string;
+  _id: string;
   title: string;
   description: string;
+  completed: boolean;
 }
 
 export interface List {
-  id: string;
+  _id: string;
   title: string;
   tasks: Task[];
+  taskCount: number;
 }
 
 export interface ListState {
@@ -21,6 +23,7 @@ export interface IGetListsResponse {
   message: string;
   data: {
       lists: List[];
+      totalLists: number;
   };
 }
 

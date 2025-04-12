@@ -1,59 +1,97 @@
-# TODOFrontend
+# To-Do List Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
+## Description
 
-## Development server
+This is a simple web application for managing to-do lists.  Users can:
 
-To start a local development server, run:
+* See a list of to-do lists, with a title and summary of tasks.
+* View the tasks in a selected to-do list, including title, description, and status.
+* Add a new to-do list with a title.
+* Add a new task to a to-do list with a title and description.
+* Mark/tag a task as completed.
 
-```bash
-ng serve
-```
+The application integrates with a REST API and persists data in the browser's local storage.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Table of Contents
 
-## Code scaffolding
+* [Installation](#installation)
+* [Usage](#usage)
+* [Features](#features)
+* [Technology Stack](#technology-stack)
+* [Contributing](#contributing)
+* [License](#license)
+* [Contact](#contact)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Installation
 
-```bash
-ng generate component component-name
-```
+1.  **Prerequisites:**
+    * [Node.js](https://nodejs.org/) (version 15 or later)
+    * [npm](https://www.npmjs.com/) (version 7 or later, usually comes with Node.js)
+    * [Angular CLI](https://angular.io/cli) (version 15 or later): `npm install -g @angular/cli`
+    * [Git](https://git-scm.com/) (if cloning from a repository)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+2.  **Clone the repository:**
+    ```bash
+    git clone <your-repository-url>
+    cd your-project-name
+    ```
 
-```bash
-ng generate --help
-```
+3.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-## Building
+## Usage
 
-To build the project run:
+1.  **Start the development server:**
+    ```bash
+    ng serve
+    ```
 
-```bash
-ng build
-```
+2.  **Open your browser:**
+    * Navigate to `http://localhost:4200/`
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+3.  **Using the application:**
+    * **View To-Do Lists:** The main page displays a list of to-do lists.
+    * **View Tasks:** Click on a to-do list to see its tasks.
+    * **Add a To-Do List:** Use the "Add New To-Do List" functionality.
+    * **Add a Task:** In the detailed view of a to-do list, use the "Add New Task" functionality.
+    * **Mark Task as Completed:** In the detailed view, toggle the task's status.
 
-## Running unit tests
+## Features
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+* Displaying to-do lists with titles and task summaries.
+* Displaying tasks within a to-do list (title, description, status).
+* Adding new to-do lists.
+* Adding new tasks to a to-do list.
+* Marking tasks as completed.
+* REST API integration.
+* Data persistence using local storage.
+* Responsive design.
 
-```bash
-ng test
-```
+## Technology Stack
 
-## Running end-to-end tests
+* Frontend:
+    * [Angular](https://angular.io/) (15+)
+    * TypeScript
+    * HTML
+    * CSS
+    * (Optional) Angular Material or other UI framework
+* Backend:
+    * REST API (implementation details vary -  could be a public API or a custom Node.js/Express backend)
+* State Management:
+    * BehaviorSubject (or NgRx, Akita, depending on complexity)
+* Other:
+    * Local Storage
+    * ESLint
+    * Prettier
+    * Unit Tests
 
-For end-to-end (e2e) testing, run:
+## Contributing
 
-```bash
-ng e2e
-```
+1.  Fork the repository.
+2.  Create a new branch for your feature or bug fix.
+3.  Make your changes.
+4.  Commit your changes and push to your fork.
+5.  Submit a pull request.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

@@ -1,3 +1,12 @@
 .full-width {
     width: 100%;
-  }
+}
+
+.btn-primary{
+  background-color: #3f51b5 !important;
+  color: white !important;
+}
+.btn-secondary{
+  border:1px solid #3f51b5 !important;
+  color: #3f51b5 !important;
+}

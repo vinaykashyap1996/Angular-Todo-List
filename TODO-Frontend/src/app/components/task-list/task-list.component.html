@@ -1,0 +1,32 @@
+<div class="task-container" [ngClass]="viewMode">
+    <ng-container *ngIf="selectedTasks.length === 0">
+        <div class="no-tasks">
+          <h3>No tasks available</h3>
+          <p>Please add a task to get started.</p>
+        </div>
+
+      </ng-container>
+      
+      <ng-container  *ngIf="selectedTasks.length > 0">
+        <div *ngFor="let tasks of selectedTasks" class="task-item" [style.border-left]="tasks?.completed ? '5px solid #006D77' : '5px solid #3f51b5'">
+          <div>
+            <div class="task-title">
+              <div class="heading">Title</div>
+              <div class="value">{{ tasks?.title }}</div>
+            </div>
+            <div>
+              <div class="heading">Description</div>
+              <div class="value">{{ tasks?.description }}</div>
+            </div>
+            
+          </div>
+          <div class="task-actions">
+            <h5>{{tasks?.completed ? 'Completed' : 'Pending'}}</h5>
+            <p>
+            <mat-checkbox [checked]="tasks?.completed" (change)="modifyTaskHandler(tasks)"></mat-checkbox>
+            </p>
+          </div>
+          
+        </div>
+      </ng-container>
+</div>

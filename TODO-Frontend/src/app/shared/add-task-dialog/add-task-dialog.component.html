@@ -1,0 +1,21 @@
+<div>
+    <div mat-dialog-title >Add Task</div>
+    <div >
+        <form mat-dialog-content (ngSubmit)="onSubmit()" class="main-form" #taskForm="ngForm" style="display: flex;flex-direction: column;justify-content: center;">
+            
+            <mat-form-field appearance="fill" class="task-input">
+                <mat-label>Title</mat-label>
+                <input matInput name="title" [(ngModel)]="taskTitle" required />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="task-input">
+                <mat-label>Description</mat-label>
+                <input matInput name="description" [(ngModel)]="taskDescription">
+            </mat-form-field>
+
+            <button MatDialogActions mat-raised-button class="btn-primary" type="submit" [disabled]="!taskForm.valid">
+                Add Task
+            </button>
+        </form>
+    </div>
+</div>

@@ -17,7 +17,7 @@ export class ApiService {
     return this.http.get<IGetListsResponse>(`${this.baseUrl}/api/`);
   }
 
-  createList(list: List): Observable<List> {
+  createList(list: any) {
     return this.http.post<List>(`${this.baseUrl}/api/`, list);
   }
 
@@ -31,5 +31,9 @@ export class ApiService {
 
   getTasksByListId(listId: string): Observable<Task[]> {
     return this.http.get<Task[]>(`${this.baseUrl}/api/${listId}`);
+  }
+
+  modifyTask(listId: string, taskId: string): Observable<Task> {
+    return this.http.patch<Task>(`${this.baseUrl}/api/${listId}/tasks/${taskId}`,{});
   }
 }

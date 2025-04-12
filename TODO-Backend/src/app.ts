@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Response, Request } from 'express';
 import todoRoutes from './routes/todo.routes';
 import cors from 'cors';
 import { errorHandler } from './middleware/errorhandler';
@@ -12,6 +12,12 @@ app.use(cors({
   }));
 
 app.use(express.json());
+
+
+app.get('/', (req: Request, res: Response): any => {
+    return res.status(200).json({ message: 'Welcome to the Todo Backend' });
+});
+
 
 app.use('/api', todoRoutes);
 

@@ -16,6 +16,7 @@ export const createList = async (req: Request, res: Response): Promise<void> => 
     logger.info('Created a new todo list', { title: req.body.title });
     handleSuccess(res, 'List created successfully', newList, 201);
   } catch (error) {
+    console.log("🚀 ~ createList ~ error:", error)
     logger.error('Error creating todo list', { error });
     handleError(res, 'Failed to create list', 500);
   }

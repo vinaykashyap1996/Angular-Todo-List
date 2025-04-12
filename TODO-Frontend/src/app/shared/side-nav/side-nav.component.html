@@ -7,12 +7,11 @@
       </button>
     </div>
     <mat-nav-list>
-      <a mat-list-item *ngFor="let list of (lists$ | async)" (click)="onSelectList(list)">
-         <!-- [ngClass]="{ 'selected': selectedList?.list?._id === list.list?._id }">
+      <a mat-list-item *ngFor="let list of lists" (click)="onSelectList(list)" [style.background]="selectedList?._id === list._id ? '#3f51b5' : ''" [style.color]="selectedList?._id === list._id ? 'white' : 'black'" [style.boxShadow]="selectedList?._id === list._id ? '0.5px 0.5px 5px gray' : ''">
         <div class="display-item">
-          <span>{{ list.list?.title }}</span>
+          <span>{{ list?.title }}</span>
           <span>{{ list?.taskCount || 0 }}</span>
-        </div> -->
+        </div>
       </a>
     </mat-nav-list>
   </mat-sidenav>
@@ -22,43 +21,29 @@
       <button *ngIf="isSmallScreen" mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span class="todo-header">Todo List</span>
+      <span class="todo-header">{{ selectedList?.title }}</span>
       <span class="spacer"></span>
       <div class="view-toggle">
-        <button mat-icon-button (click)="toggleView('list')">
+        <button mat-icon-button class="add-button" (click)="addNewTask()">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button *ngIf="viewMode == 'grid' && !this.isSmallScreen" mat-icon-button (click)="toggleView('list')">
           <mat-icon>view_list</mat-icon>
         </button>
-        <button mat-icon-button (click)="toggleView('grid')">
+        <button *ngIf="viewMode == 'list' && !this.isSmallScreen" mat-icon-button (click)="toggleView('grid')">
           <mat-icon>grid_view</mat-icon>
         </button>
       </div>
     </mat-toolbar>
 
-    <div *ngIf="selectedList" class="create-task-form">
-      <h3>Create New Task</h3>
-      <form (ngSubmit)="onCreateTask()" #taskForm="ngForm">
-        <mat-form-field appearance="fill" class="task-input">
-          <mat-label>Title</mat-label>
-          <input matInput name="title" [(ngModel)]="newTaskTitle" required />
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="task-input">
-          <mat-label>Description</mat-label>
-          <textarea matInput name="description" [(ngModel)]="newTaskDescription"></textarea>
-        </mat-form-field>
-
-        <button mat-raised-button color="primary" type="submit" [disabled]="!taskForm.form.valid">
-          Add Task
-        </button>
-      </form>
-    </div>
-
-
-    <div class="task-container" [ngClass]="viewMode">
-      <div *ngFor="let tasks of selectedTasks" class="task-item">
-        <h3>{{ tasks?.title }}</h3>
-        <p>{{ tasks?.description }}</p>
-      </div>
+    <div>
+      <ng-container *ngIf="isLoading">
+        <app-spinner></app-spinner>
+      </ng-container> 
+      <ng-container *ngIf="!isLoading">
+        <app-task-list [selectedTasks] = "selectedTasks" [viewMode]="viewMode" (modifyTask)="modifyTask($event)" ></app-task-list>
+      </ng-container> 
+      
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
