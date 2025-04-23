@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatDialogActions, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
+import { MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
@@ -8,7 +8,7 @@ import { MatButton } from '@angular/material/button';
 @Component({
   selector: 'app-add-task-dialog',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButton,MatDialogActions, MatDialogContent, MatDialogTitle],
+  imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButton, MatDialogContent, MatDialogTitle],
   templateUrl: './add-task-dialog.component.html',
   styleUrls: ['./add-task-dialog.component.css']
 })
